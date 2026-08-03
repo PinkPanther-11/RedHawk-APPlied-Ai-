@@ -684,27 +684,6 @@ body {
   color: var(--t2);
 }
 
-/* Lovable / Base44: real marketing lockups (icon + wordmark baked into one
-   image), not isolated icon marks like the four above. A tight icon-only
-   crop isn't possible at this source resolution (225x180 / 316x180) without
-   clipping the mark or catching a sliver of the wordmark, so the tile's own
-   background is matched to each logo's native canvas color instead —
-   that reads as one seamless mark rather than a screenshot floating in a
-   mismatched frame. */
-.tool-badge-logo {
-  grid-column: span 1;
-  padding: 10px;
-  justify-content: center;
-}
-.tool-badge-lovable { background: #050505; border-color: #050505; }
-.tool-badge-base44  { background: #F5E8E3; border-color: #F5E8E3; }
-.tool-lockup {
-  width: 100%;
-  height: auto;
-  max-height: 52px;
-  object-fit: contain;
-}
-
 /* ── Team: full-bleed background photo ─────────────────────────────────
    Whole section runs the Farmer School photo edge-to-edge (not just a
    contained header card) so there's no flat empty margin either side of
@@ -958,7 +937,14 @@ body {
 @media (max-width: 600px) {
   .wrap { padding: 0 20px; }
   .panel { padding: calc(var(--nav-h) + 30px) 0 44px; }
-  .hero-wrap { padding-bottom: 170px; }
+  .hero-wrap { padding-bottom: 132px; }
+
+  /* .hero-bar-inner also carries the .wrap class, whose padding reset above
+     would otherwise win (later in source order, same specificity) and strip
+     the bar back to 0 top/bottom padding — hence the compound selector. */
+  .hero-bar .hero-bar-inner { padding: 12px 20px; gap: 8px; }
+  .hbar-item strong { font-size: 13px; }
+  .hbar-item span { font-size: 11.5px; }
 
   .hero-title { font-size: clamp(32px, 9vw, 42px); margin-bottom: 16px; }
   .hero-lede { font-size: 15px; line-height: 1.55; margin-bottom: 28px; }
@@ -986,8 +972,8 @@ body {
   .tool-badge { padding: 14px 8px; gap: 8px; }
   .tool-mark { width: 34px; height: 34px; }
   .tool-mark svg { width: 18px; height: 18px; }
+  .tool-mark-img { width: 18px; height: 18px; }
   .tool-name { font-size: 11.5px; }
-  .tool-lockup { max-height: 42px; }
 }
 
 @media (max-width: 480px) {
