@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000"
+     role="img" aria-label="RedHawk Applied AI">
+  <title>RedHawk Applied AI</title>
+
+  <!-- Black field -->
+  <circle cx="500" cy="500" r="500" fill="#000000"/>
+
+  <!-- Red ring -->
+  <circle cx="500" cy="500" r="437" fill="none" stroke="#E4142B" stroke-width="9"/>
+
+  <!-- Wing: four tapered feathers fanning up to the right.
+       scale(0.8) seats it in y 194-546, clear of the wordmark below. -->
+  <g fill="#E4142B" transform="scale(0.8)">
+    <path d="M462,462
+             C560,392 736,300 896,243
+             C838,352 706,455 560,545
+             C520,522 486,494 462,462 Z"/>
+    <path d="M436,548
+             C546,479 716,421 846,394
+             C770,462 630,527 508,590
+             C484,578 458,564 436,548 Z"/>
+    <path d="M408,618
+             C520,560 682,523 798,513
+             C706,570 584,604 482,645
+             C456,637 431,628 408,618 Z"/>
+    <path d="M376,670
+             C490,633 632,609 738,611
+             C646,650 534,670 438,682
+             C417,678 396,674 376,670 Z"/>
+  </g>
+
+  <!-- Wordmark. Rendered with a system sans: SVG used via <img> cannot load
+       webfonts, and at nav size this reads as a mark, not as text. -->
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="500" y="690" font-size="165" font-weight="700" letter-spacing="-4">
+      <tspan fill="#E4142B">Red</tspan><tspan fill="#FFFFFF">Hawk</tspan>
+    </text>
+    <text x="500" y="800" font-size="92" font-weight="600" letter-spacing="2">
+      <tspan fill="#FFFFFF">Applied </tspan><tspan fill="#E4142B">AI</tspan>
+    </text>
+  </g>
+</svg>
