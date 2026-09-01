@@ -428,7 +428,7 @@ body {
   -webkit-backdrop-filter: blur(14px);
 }
 .hero-bar-inner {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   padding-top: 24px; padding-bottom: 24px;
 }
@@ -842,6 +842,7 @@ body {
 .ff-inner svg { margin: 0 auto 18px; color: var(--t3); }
 .ff-inner p strong { color: var(--t1); font-family: var(--display); font-size: 18px; }
 .ff-note { margin-top: 10px; font-size: 14px; line-height: 1.55; }
+.ff-inner .btn { margin-top: 22px; }
 .ff-note code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12.6px;
