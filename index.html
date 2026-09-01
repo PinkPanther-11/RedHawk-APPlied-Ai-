@@ -8,13 +8,16 @@
 <meta property="og:title" content="RedHawk Applied AI · Miami University">
 <meta property="og:description" content="Learn AI. Hear from practitioners. Deliver real client work.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://www.redhawkappliedai.club/assets/social-cover.jpg">
+<!-- og:image/twitter:image need an absolute URL to actually render in link
+     previews (relative paths are ignored by most scrapers) — swap these to
+     https://redhawkappliedai.club/assets/social-cover.jpg once redeployed. -->
+<meta property="og:image" content="assets/social-cover.jpg">
 <meta property="og:image:width" content="1731">
 <meta property="og:image:height" content="909">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="RedHawk Applied AI · Miami University">
 <meta name="twitter:description" content="Learn AI. Hear from practitioners. Deliver real client work.">
-<meta name="twitter:image" content="https://www.redhawkappliedai.club/assets/social-cover.jpg">
+<meta name="twitter:image" content="assets/social-cover.jpg">
 <link rel="icon" href="assets/logo.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +48,7 @@
     <a href="#team">Meet the Exec</a>
     <a href="#partner">Work With Us</a>
   </nav>
-  <a href="#interest" class="btn btn-primary btn-sm topnav-cta">Join the Interest List</a>
+  <a href="https://forms.gle/FGVftUjYrNFEQFHz5" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm topnav-cta">Apply Now</a>
   <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
@@ -55,14 +58,14 @@
   <a href="#about">About</a>
   <a href="#team">Meet the Exec</a>
   <a href="#partner">Work With Us</a>
-  <a href="#interest" class="btn btn-primary">Join the Interest List</a>
+  <a href="https://forms.gle/FGVftUjYrNFEQFHz5" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Apply Now</a>
 </div>
 
 <nav class="scroll-rail" aria-label="Section navigation">
   <button data-target="hero"     class="rail-dot is-active" aria-label="Introduction"><span class="rail-tip">Intro</span></button>
   <button data-target="about"    class="rail-dot" aria-label="About"><span class="rail-tip">About</span></button>
   <button data-target="team"     class="rail-dot" aria-label="Meet the exec"><span class="rail-tip">Meet the Exec</span></button>
-  <button data-target="interest" class="rail-dot" aria-label="Join"><span class="rail-tip">Join</span></button>
+  <button data-target="interest" class="rail-dot" aria-label="Apply"><span class="rail-tip">Apply</span></button>
   <button data-target="partner"  class="rail-dot" aria-label="Work with us"><span class="rail-tip">Work With Us</span></button>
 </nav>
 
@@ -92,7 +95,7 @@
           professionally, and finish the semester consulting for an actual company.
         </p>
         <div class="hero-actions reveal">
-          <a href="#interest" class="btn btn-primary btn-lg">Join the Interest List</a>
+          <a href="https://forms.gle/FGVftUjYrNFEQFHz5" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Apply Now</a>
           <a href="#about" class="btn btn-outline-light btn-lg">Learn More</a>
         </div>
       </div>
@@ -103,6 +106,7 @@
         <div class="hbar-item"><strong>Open to every major</strong><span>No experience required</span></div>
         <div class="hbar-item"><strong>Industry speakers</strong><span>People doing this for a living</span></div>
         <div class="hbar-item"><strong>A real client</strong><span>Actual deliverables, not case studies</span></div>
+        <div class="hbar-item"><strong>Apply Sept 1&ndash;11</strong><span>Closes 4:00 PM</span></div>
       </div>
     </div>
 
@@ -343,42 +347,28 @@
     <div class="wrap">
       <div class="form-layout">
         <div class="form-copy">
-          <p class="kicker kicker-light reveal"><span class="kicker-num">03</span> Join Us</p>
-          <h2 class="h2 h2-light reveal">Get on the interest list.</h2>
+          <p class="kicker kicker-light reveal"><span class="kicker-num">03</span> Apply Now</p>
+          <h2 class="h2 h2-light reveal">Applications are open.</h2>
           <p class="lede lede-light reveal">
-            Fill this out and we'll reach out with meeting times, recruitment dates,
-            and everything you need to know before the semester starts.
+            Applications open September 1 and close September 11 at 4:00&nbsp;PM.
+            Open to all majors &mdash; no experience required.
           </p>
           <ul class="form-points reveal">
             <li>Takes about a minute</li>
-            <li>No commitment, just gets you the details</li>
+            <li>Open to every major, no experience required</li>
+            <li>Closes Sept 11 at 4:00 PM &mdash; apply early</li>
           </ul>
         </div>
 
         <div class="form-embed reveal">
-          <!-- Live interest form. The ?embedded=true param is what makes Google
-               serve the chromeless version; the utm_* tracking params from the
-               link-in-bio URL are dropped since they don't apply here. -->
-          <iframe
-            id="interestForm"
-            src="about:blank"
-            data-form-src="https://docs.google.com/forms/d/e/1FAIpQLSehs3oqgi62ka-vU4-kvApwYRH0b05tXhEiJeGWHTAYCLoPqA/viewform?embedded=true"
-            title="RedHawk Applied AI interest form"
-            width="100%"
-            height="820"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-            loading="lazy">Loading…</iframe>
-
           <div class="form-fallback" id="formFallback">
             <div class="ff-inner">
               <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg>
-              <p><strong>The interest form isn't loading.</strong></p>
+              <p><strong>Applications are open now.</strong></p>
               <p class="ff-note">
-                You can open it directly instead:
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSehs3oqgi62ka-vU4-kvApwYRH0b05tXhEiJeGWHTAYCLoPqA/viewform" target="_blank" rel="noopener noreferrer">RedHawk Applied AI interest form</a>.
+                Applications open Sept 1 and close Sept 11 at 4:00 PM. Open to all majors.
               </p>
+              <a href="https://forms.gle/FGVftUjYrNFEQFHz5" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Apply Now</a>
             </div>
           </div>
         </div>
@@ -433,7 +423,7 @@
         <nav class="foot-nav" aria-label="Footer">
           <a href="#about">About</a>
           <a href="#team">Meet the Exec</a>
-          <a href="#interest">Join</a>
+          <a href="#interest">Apply</a>
           <a href="#partner">Work With Us</a>
         </nav>
         <div class="foot-social">
