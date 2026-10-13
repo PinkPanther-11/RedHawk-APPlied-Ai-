@@ -67,7 +67,7 @@ Eight are in `assets/team/`, generated from the LinkedIn downloads by
 44–185 KB each. EXIF rotation is honored and the crop is biased slightly toward the top
 so heads don't get sliced off.
 
-**Still needed: Will Beinecke and Kaelynn Smith.** Put each source file in `Downloads`, add an entry to
+To add or replace a headshot, put the source file in `Downloads`, add an entry to
 the `$map` in `process-headshots.ps1`, and re-run it.
 
 **Fixing a crop.** Sources ranged from a 400 × 400 thumbnail (Aidan) to a 6000 × 4000

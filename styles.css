@@ -674,20 +674,6 @@ body {
    instead of leaving an empty slot where the button would sit. */
 .member.no-link .member-text { flex: 1 1 100%; }
 
-/* Exec with no headshot yet: initials on a dark tile, same 4:5 footprint
-   as a photo so the card rows stay aligned. */
-.member-initials {
-  display: flex; align-items: center; justify-content: center;
-  background:
-    radial-gradient(circle at 82% 12%, rgba(200,16,46,0.55) 0%, transparent 58%),
-    linear-gradient(155deg, #262830 0%, var(--ink) 70%);
-}
-.member-initials span {
-  font-family: var(--serif); font-style: italic;
-  font-size: 56px; line-height: 1;
-  color: #fff;
-}
-
 /* ── Shared small pieces ───────────────────────────────── */
 .btn-outline-dark {
   color: var(--t1);
@@ -1371,7 +1357,6 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
 }
 
 @media (max-width: 480px) {
-  .member-initials span { font-size: 34px; }
   /* Two narrow columns: stack the avatar above the name. */
   .seat { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; }
   .seat-avatar { width: 44px; height: 44px; }

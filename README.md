@@ -53,11 +53,10 @@ footer. SVG is better than PNG if you have the vector file.
 Save to `assets/hero-campus.jpg` and update the hero `<img>` src.
 **See `IMAGES.md`** — use a real photo, not an AI-generated one.
 
-### 4. Exec headshots — ✅ 8 of 10 done
-Eight headshots are live in `assets/team/` with real LinkedIn links wired up.
-**Still needed: Will Beinecke and Kaelynn Smith** (headshot + LinkedIn). Their cards
-show initials and deliberately have no LinkedIn button — a dead `#` link is worse
-than none.
+### 4. Exec headshots — ✅ 10 of 10 done
+All ten headshots are live in `assets/team/`. Will Beinecke and Kaelynn Smith have no
+LinkedIn button yet (the `no-link` class on their cards); add the `<a class="li">` block
+from another card and drop `no-link` once you have their links.
 
 To add one: drop the photo in `Downloads`, add them to the `$map` in
 `process-headshots.ps1`, run it, then update their `<article class="member">` block to
