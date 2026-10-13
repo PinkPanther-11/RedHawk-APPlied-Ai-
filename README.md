@@ -1,12 +1,15 @@
 # RedHawk Applied AI — Website
 
-Static site. No build step, no dependencies, no framework. Three files plus images.
+Static site. No build step, no dependencies, no framework.
 
 ```
-index.html      all content
-styles.css      design system + layout
-script.js       scroll behavior, nav, form embed
-assets/         images (currently labeled placeholders)
+index.html        home page: about, RedHawk Builds, exec, apply, work with us
+members.html      Current Members page: roster, 11-week curriculum, second semester
+members-data.js   the roster and weekly curriculum content (edit this one)
+members.js        draws the roster and curriculum from members-data.js
+styles.css        design system + layout
+script.js         scroll behavior, nav, motion
+assets/           images
 IMAGES.md       what image goes where + sourcing guide
 ```
 
@@ -27,19 +30,19 @@ Then open <http://localhost:5173>.
 
 ## Before launch — the four things that need real content
 
-### 1. The Google Form — ✅ done
-Wired to the live "Redhawk Applied AI Interest Form" (Full Name, Major/Minors, Grade,
-Miami Email). Verified loading and publicly reachable with no sign-in wall.
+### 1. Applications, roster, and curriculum
+The interest form is gone. The `#apply` section in `index.html` says applications
+reopen in February; when they do, swap that section's buttons for the application link.
 
-The `utm_source=ig` tracking params from the link-in-bio URL were dropped and
-`?embedded=true` added — that param is what makes Google serve the chromeless version.
+**Roster and weekly curriculum** both live in `members-data.js`:
 
-To swap forms later, change `data-form-src` on the `#interestForm` iframe. The script
-validates the URL is a real `docs.google.com/forms/` address before loading it; if not,
-it shows a styled fallback with a direct link rather than a broken empty frame.
+- `ROSTER`: one line per member (`name`, `detail`, `linkedin`, `photo`). Empty seats
+  show as "Coming soon" up to `ROSTER_SEATS` (24).
+- `CURRICULUM`: one entry per week, in order. Replace a `{ tba: true }` entry with a
+  `title`, `summary`, and `sections` to announce that week. The hackathon is the entry
+  marked `event: true`.
 
-If the embedded form ends up scrolling internally, adjust the iframe's `height`
-attribute (currently `820`).
+Weeks are numbered automatically from their order, so nothing else needs renumbering.
 
 ### 2. The logo
 Save your real logo (white circle version) to `assets/logo.png`, then update the two
@@ -50,14 +53,14 @@ footer. SVG is better than PNG if you have the vector file.
 Save to `assets/hero-campus.jpg` and update the hero `<img>` src.
 **See `IMAGES.md`** — use a real photo, not an AI-generated one.
 
-### 4. Exec headshots — ✅ 8 of 9 done
+### 4. Exec headshots — ✅ 8 of 10 done
 Eight headshots are live in `assets/team/` with real LinkedIn links wired up.
-**Still needed: Claire Richardson** (headshot + LinkedIn). Her card currently shows
-the placeholder portrait and deliberately has no LinkedIn button — a dead `#` link is
-worse than none.
+**Still needed: Will Beinecke and Kaelynn Smith** (headshot + LinkedIn). Their cards
+show initials and deliberately have no LinkedIn button — a dead `#` link is worse
+than none.
 
-To add her: drop `claire-richardson.jpg` in `Downloads`, add her to the `$map` in
-`process-headshots.ps1`, run it, then update her `<article class="member">` block to
+To add one: drop the photo in `Downloads`, add them to the `$map` in
+`process-headshots.ps1`, run it, then update their `<article class="member">` block to
 match the other eight.
 
 **Adjusting a crop.** Each headshot was auto-cropped to 4:5 from a differently-shaped
@@ -70,10 +73,6 @@ that one `<img>` — no other change needed:
 
 Second value is the vertical anchor: **lower % = more headroom above the face**,
 higher % = more chin/shoulders. Default is `50% 28%`.
-
-Also still `href="#"`: the two footer social links (Instagram, LinkedIn), and confirm
-`redhawkappliedai@miamioh.edu` is your real address (it appears twice — interest
-section and footer).
 
 ---
 

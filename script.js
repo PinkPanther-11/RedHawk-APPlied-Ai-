@@ -59,7 +59,8 @@
     panels.forEach(function (p) {
       var r = p.getBoundingClientRect();
       if (r.top <= midY && r.bottom >= midY) {
-        onDark = p.classList.contains("panel-dark") || p.classList.contains("hero");
+        onDark = p.classList.contains("panel-dark") || p.classList.contains("hero") ||
+                 p.classList.contains("team-panel");
       }
     });
     if (rail) rail.classList.toggle("on-dark", onDark);
@@ -373,16 +374,81 @@
     resize();
   })();
 
-  /* ── Google Form embed ────────────────────────────── */
-  // Only load the iframe if a real URL has been filled in, so the styled
-  // fallback shows instead of a broken/blank frame.
-  var frame = document.getElementById("interestForm");
-  if (frame) {
-    var src = frame.getAttribute("data-form-src") || "";
-    var looksReal = /^https:\/\/docs\.google\.com\/forms\//.test(src);
-    if (looksReal) {
-      frame.src = src;
-      frame.parentNode.classList.add("has-form");
+  /* ── Count-up numbers ─────────────────────────────── */
+  // Any element with data-count="2000" counts up from 0 the first time it
+  // scrolls into view. The real number is already in the HTML, so no-JS and
+  // reduced-motion visitors just see it.
+  var counters = [].slice.call(document.querySelectorAll("[data-count]"));
+  if (counters.length && !prefersReduced && "IntersectionObserver" in window) {
+    var countIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        countIO.unobserve(e.target);
+        var node = e.target;
+        var end = parseInt(node.getAttribute("data-count"), 10) || 0;
+        var t0 = null, DUR = 1100;
+        (function tick(t) {
+          if (t0 === null) t0 = t;
+          var p = Math.min((t - t0) / DUR, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          node.textContent = Math.round(end * eased).toLocaleString("en-US");
+          if (p < 1) requestAnimationFrame(tick);
+        })(performance.now());
+      });
+    }, { root: snap, threshold: 0.6 });
+    counters.forEach(function (c) { countIO.observe(c); });
+  }
+
+  /* ── Curriculum timeline: spine fill + week counter ── */
+  // The red line down the timeline fills to wherever the reader is, the dots
+  // behind that point turn red, and the big number tracks the current week.
+  var tlFill   = document.getElementById("tlFill");
+  var tlList   = document.getElementById("timeline");
+  var currWeek = document.getElementById("currWeek");
+
+  function syncTimeline() {
+    if (!tlFill || !tlList) return;
+    var spine = tlFill.parentNode.getBoundingClientRect();
+    if (!spine.height) return;
+    var mark = window.innerHeight * 0.58;
+    var p = Math.max(0, Math.min(1, (mark - spine.top) / spine.height));
+    tlFill.style.transform = "scaleY(" + p.toFixed(4) + ")";
+
+    var weeks = 0;
+    [].slice.call(tlList.children).forEach(function (item) {
+      var dot = item.querySelector(".tl-dot");
+      var passed = dot && dot.getBoundingClientRect().top <= mark;
+      item.classList.toggle("is-passed", !!passed);
+      if (passed && !item.classList.contains("tl-event")) weeks++;
+    });
+    if (currWeek) currWeek.textContent = (weeks < 10 ? "0" : "") + Math.max(weeks, 1);
+  }
+
+  /* ── Reading progress bar ─────────────────────────── */
+  var progressBar = document.getElementById("progressBar");
+
+  function syncProgress() {
+    if (!progressBar || !snap) return;
+    var max = snap.scrollHeight - snap.clientHeight;
+    progressBar.style.transform = "scaleX(" + (max > 0 ? snap.scrollTop / max : 0).toFixed(4) + ")";
+  }
+
+  if (snap && (progressBar || tlFill)) {
+    var ticking2 = false;
+    var onScroll2 = function () {
+      if (ticking2) return;
+      ticking2 = true;
+      requestAnimationFrame(function () { syncProgress(); syncTimeline(); ticking2 = false; });
+    };
+    snap.addEventListener("scroll", onScroll2, { passive: true });
+    window.addEventListener("resize", onScroll2, { passive: true });
+    // Opening a week changes the timeline's height, so re-measure as it animates.
+    if (tlList) {
+      tlList.addEventListener("click", function () {
+        var n = 0;
+        (function again() { syncTimeline(); if (++n < 24) requestAnimationFrame(again); })();
+      });
     }
+    onScroll2();
   }
 })();
