@@ -175,8 +175,5 @@ var CURRICULUM = [
       ]}
     ]
   },
-  { tba: true },
-  { tba: true },
-  { tba: true },
   { tba: true }
 ];

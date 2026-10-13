@@ -11,8 +11,6 @@
     return n;
   }
 
-  function pad(n) { return n < 10 ? "0" + n : String(n); }
-
   function initials(name) {
     return name.split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) {
       return w.charAt(0).toUpperCase();
@@ -52,13 +50,13 @@
         img.loading = "lazy";
         avatar.appendChild(img);
       } else {
-        avatar.appendChild(el("span", null, hasName ? initials(m.name) : pad(i + 1)));
+        if (hasName) avatar.appendChild(el("span", null, initials(m.name)));
       }
       card.appendChild(avatar);
 
       var text = el("div", "seat-text");
       text.appendChild(el("p", "seat-name", hasName ? m.name : "Coming soon"));
-      text.appendChild(el("p", "seat-detail", hasName ? (m.detail || "Member") : "Member " + pad(i + 1)));
+      text.appendChild(el("p", "seat-detail", hasName ? (m.detail || "Member") : "Member"));
       card.appendChild(text);
 
       if (hasName && m.linkedin) {
@@ -90,7 +88,7 @@
       item.appendChild(el("span", "tl-dot"));
 
       var card = el("div", "tl-card");
-      var tag = w.event ? w.date : "Week " + pad(week);
+      var tag = w.event ? w.date : "Week " + week;
 
       if (w.tba) {
         var row = el("div", "tl-head");

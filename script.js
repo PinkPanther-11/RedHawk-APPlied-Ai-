@@ -421,7 +421,7 @@
       item.classList.toggle("is-passed", !!passed);
       if (passed && !item.classList.contains("tl-event")) weeks++;
     });
-    if (currWeek) currWeek.textContent = (weeks < 10 ? "0" : "") + Math.max(weeks, 1);
+    if (currWeek) currWeek.textContent = Math.max(weeks, 1);
   }
 
   /* ── Reading progress bar ─────────────────────────── */

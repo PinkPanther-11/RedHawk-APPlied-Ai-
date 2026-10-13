@@ -335,14 +335,7 @@ body {
   color: var(--red);
   margin-bottom: 20px;
 }
-.kicker-num {
-  font-family: var(--serif); font-style: italic;
-  font-size: 17px; letter-spacing: 0;
-  text-transform: none;
-  color: var(--t3);
-}
 .kicker-light { color: #fff; }
-.kicker-light .kicker-num { color: rgba(255,255,255,0.72); } /* 0.5 measured 3.45:1 on the Team photo bg — bumped to clear 4.5:1 AA everywhere it's used */
 
 .h2 {
   font-family: var(--display);
@@ -482,20 +475,6 @@ body {
   letter-spacing: 0.01em;
 }
 
-.pull {
-  margin-top: 34px;
-  padding: 4px 0 4px 22px;
-  border-left: 3px solid var(--red);
-}
-.pull p {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(19px, 1.9vw, 23px);
-  line-height: 1.42;
-  color: var(--t1);
-  max-width: 44ch;
-}
-
 /* ── Phases (light — lives inside the combined About section) ────────── */
 .phase-row {
   display: grid;
@@ -512,15 +491,6 @@ body {
   transition: transform var(--med) var(--ease), border-color var(--med) var(--ease), box-shadow var(--med) var(--ease);
 }
 .phase:hover { transform: translateY(-5px); border-color: var(--line-soft); box-shadow: var(--shadow-sm); }
-.phase-icon {
-  width: 46px; height: 46px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: var(--r-md);
-  background: var(--red);
-  color: #fff;
-  margin-bottom: 20px;
-}
-.phase-icon svg { width: 22px; height: 22px; }
 .phase h3 {
   font-family: var(--display);
   font-size: 18.5px; font-weight: 700;
@@ -630,12 +600,24 @@ body {
   .partner-bg { animation: none; }
 }
 
-/* ── Tool badges (About section, replaces the meeting photo) ──────────
-   Claude / ChatGPT / Zapier / Cursor use their real Simple Icons marks
-   (MIT-licensed brand icon set built exactly for "built with" style
-   badges). Lovable and Base44 aren't in that set, so those two fall back
-   to a plain wordmark tile — swap in their official marks if you get them
-   from lovable.dev/press or base44.com's brand page. ── */
+/* ── Tool badges ───────────────────────────────────────────
+   Each brand mark is an SVG in assets/tool-logos/, drawn white on the
+   brand's color (--tb) through a CSS mask, so one file works on any tile. */
+.logo {
+  display: block;
+  width: 21px; height: 21px;
+  background: currentColor;
+  -webkit-mask: var(--logo) center / contain no-repeat;
+          mask: var(--logo) center / contain no-repeat;
+}
+.phase-when {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.phase .phase-when { font-size: 12px; color: var(--red); }
+
 .tool-card {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -675,8 +657,6 @@ body {
   font-size: 15px;
   letter-spacing: -0.02em;
 }
-.tool-mark svg { width: 21px; height: 21px; }
-.tool-mark-img { width: 21px; height: 21px; object-fit: contain; }
 
 .tool-name {
   font-size: 12.5px;
@@ -859,7 +839,6 @@ body {
 /* ── RedHawk Builds (hackathon) ────────────────────────── */
 .builds {
   overflow: hidden;
-  padding-top: calc(var(--nav-h) + 104px);
   background:
     radial-gradient(circle at 84% 4%, rgba(200,16,46,0.26) 0%, transparent 46%),
     linear-gradient(rgba(255,255,255,0.032) 1px, transparent 1px) 0 0 / 100% 56px,
@@ -872,35 +851,6 @@ body {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   letter-spacing: -0.01em;
   color: #FF6B84;
-}
-
-/* Stock-ticker strip, a nod to the event's flyer. Two identical runs of
-   symbols so the -50% loop is seamless. */
-.ticker {
-  position: absolute; left: 0; right: 0; top: var(--nav-h);
-  overflow: hidden;
-  border-top: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
-  background: rgba(255,255,255,0.03);
-}
-.ticker-track {
-  display: flex; width: max-content;
-  animation: tickerMove 44s linear infinite;
-}
-.ticker span {
-  padding: 11px 24px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--d2);
-  white-space: nowrap;
-}
-.ticker b { font-weight: 600; color: #4ADE80; margin-left: 6px; }
-@keyframes tickerMove {
-  to { transform: translateX(-50%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .ticker-track { animation: none; }
 }
 
 .builds-top {
@@ -1325,9 +1275,45 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
 }
 
 .track {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+/* Step 01 runs full width: copy on the left, the four model teams on the right */
+.track-wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 40px;
+  align-items: center;
+}
+.model-teams {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.model-team {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,0.035);
+  transition: transform var(--fast) var(--ease), border-color var(--fast) var(--ease);
+}
+.model-team:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.4); }
+.model-team .tool-mark {
+  flex: none;
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.14);
+}
+.model-team .logo { width: 24px; height: 24px; }
+.model-text { display: flex; flex-direction: column; line-height: 1.3; }
+.model-text strong {
+  font-family: var(--display);
+  font-size: 16.5px; font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+.model-text span { font-size: 13px; color: var(--d2); }
 .track-step {
   padding: 26px 24px 28px;
   border: 1px solid var(--line-dark);
@@ -1336,17 +1322,12 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
   transition: transform var(--med) var(--ease), border-color var(--med) var(--ease);
 }
 .track-step:hover { transform: translateY(-4px); border-color: rgba(255,107,132,0.5); }
-.track-num {
-  font-family: var(--serif); font-style: italic;
-  font-size: 32px; line-height: 1;
-  color: #FF6B84;
-}
 .track-step h3 {
   font-family: var(--display);
   font-size: 18.5px; font-weight: 700;
   letter-spacing: -0.02em; line-height: 1.28;
   color: #fff;
-  margin: 16px 0 9px;
+  margin: 0 0 9px;
 }
 .track-step p { font-size: 14.5px; line-height: 1.58; color: var(--d2); }
 .track-step p strong { color: #fff; font-weight: 600; }
@@ -1476,15 +1457,10 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
   .lede { font-size: 15px; line-height: 1.56; }
   .sec-head { margin-bottom: 34px; }
 
-  .pull { margin-top: 20px; padding: 3px 0 3px 16px; }
-  .pull p { font-size: 16.5px; }
-
   .split { gap: 32px; }
 
   .phase-row-tight { margin-top: 28px; }
   .phase { padding: 22px 20px 24px; }
-  .phase-icon { width: 38px; height: 38px; margin-bottom: 14px; }
-  .phase-icon svg { width: 18px; height: 18px; }
   .phase h3 { font-size: 16px; margin-bottom: 7px; }
   .phase p { font-size: 13.5px; }
 
@@ -1493,8 +1469,6 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
   .tool-grid { gap: 10px; }
   .tool-badge { padding: 14px 8px; gap: 8px; }
   .tool-mark { width: 34px; height: 34px; }
-  .tool-mark svg { width: 18px; height: 18px; }
-  .tool-mark-img { width: 18px; height: 18px; }
   .tool-name { font-size: 11.5px; }
 }
 
@@ -1516,7 +1490,7 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
 /* ── Responsive: hackathon, apply, and the Current Members page ── */
 @media (max-width: 1100px) {
   .roster { grid-template-columns: repeat(3, 1fr); }
-  .track { grid-template-columns: repeat(2, 1fr); }
+  .track-wide { grid-template-columns: 1fr; gap: 24px; }
 }
 
 @media (max-width: 1024px) {
@@ -1530,11 +1504,10 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
   .weekend { grid-template-columns: 1fr; margin-top: 40px; }
   .roster { grid-template-columns: repeat(2, 1fr); }
   .page-hero { min-height: auto; padding-bottom: 60px; }
+  .track { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
-  .builds { padding-top: calc(var(--nav-h) + 76px); }
-  .ticker span { padding: 9px 16px; font-size: 11px; }
   .builds-meta { margin: 20px 0 24px; }
   .builds-top, .apply-layout, .curr-layout { gap: 32px; }
   .prize-card { padding: 22px 20px 20px; }
@@ -1548,7 +1521,7 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
   .apply-actions .btn { flex: 1 1 100%; }
 
   .page-title { font-size: clamp(30px, 8.6vw, 40px); }
-  .track { grid-template-columns: 1fr; }
+  .model-teams { grid-template-columns: 1fr; }
   .meet-card { width: 100%; }
   .spring-cta .btn { width: 100%; }
 
