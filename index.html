@@ -41,9 +41,9 @@
     </span>
   </a>
   <nav class="topnav-links" aria-label="Primary">
-    <a href="#about">About</a>
+    <a href="#curriculum">How It Works</a>
     <a href="#team">Meet the Exec</a>
-    <a href="members.html">Current Members</a>
+    <a href="#roster">Current Members</a>
     <a href="#partner">Work With Us</a>
   </nav>
   <a href="#builds" class="btn btn-primary btn-sm topnav-cta">RedHawk Builds &middot; Nov 6&ndash;8</a>
@@ -53,9 +53,9 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <a href="#about">About</a>
+  <a href="#curriculum">How It Works</a>
   <a href="#team">Meet the Exec</a>
-  <a href="members.html">Current Members</a>
+  <a href="#roster">Current Members</a>
   <a href="#apply">Apply</a>
   <a href="#partner">Work With Us</a>
   <a href="#builds" class="btn btn-primary">RedHawk Builds &middot; Nov 6&ndash;8</a>
@@ -64,12 +64,14 @@
 <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
 <nav class="scroll-rail" aria-label="Section navigation">
-  <button data-target="hero"    class="rail-dot is-active" aria-label="Introduction"><span class="rail-tip">Intro</span></button>
-  <button data-target="about"   class="rail-dot" aria-label="About"><span class="rail-tip">About</span></button>
-  <button data-target="builds"  class="rail-dot" aria-label="RedHawk Builds hackathon"><span class="rail-tip">RedHawk Builds</span></button>
-  <button data-target="team"    class="rail-dot" aria-label="Meet the exec"><span class="rail-tip">Meet the Exec</span></button>
-  <button data-target="apply"   class="rail-dot" aria-label="Apply"><span class="rail-tip">Apply</span></button>
-  <button data-target="partner" class="rail-dot" aria-label="Work with us"><span class="rail-tip">Work With Us</span></button>
+  <button data-target="hero"       class="rail-dot is-active" aria-label="Introduction"><span class="rail-tip">Intro</span></button>
+  <button data-target="curriculum" class="rail-dot" aria-label="How it works"><span class="rail-tip">How It Works</span></button>
+  <button data-target="spring"     class="rail-dot" aria-label="Second semester"><span class="rail-tip">Second Semester</span></button>
+  <button data-target="builds"     class="rail-dot" aria-label="RedHawk Builds hackathon"><span class="rail-tip">RedHawk Builds</span></button>
+  <button data-target="team"       class="rail-dot" aria-label="Meet the exec"><span class="rail-tip">Meet the Exec</span></button>
+  <button data-target="roster"     class="rail-dot" aria-label="Current members"><span class="rail-tip">Current Members</span></button>
+  <button data-target="apply"      class="rail-dot" aria-label="Apply"><span class="rail-tip">Apply</span></button>
+  <button data-target="partner"    class="rail-dot" aria-label="Work with us"><span class="rail-tip">Work With Us</span></button>
 </nav>
 
 <main id="main">
@@ -98,7 +100,7 @@
           professionally, and put you on a team consulting for an actual company.
         </p>
         <div class="hero-actions reveal">
-          <a href="members.html#curriculum" class="btn btn-primary btn-lg">See the Program</a>
+          <a href="#curriculum" class="btn btn-primary btn-lg">See the Program</a>
           <a href="#builds" class="btn btn-outline-light btn-lg">RedHawk Builds &middot; Nov 6&ndash;8</a>
         </div>
       </div>
@@ -112,88 +114,103 @@
       </div>
     </div>
 
-    <button class="scroll-cue" data-scroll-to="about" aria-label="Scroll to About section">
+    <button class="scroll-cue" data-scroll-to="curriculum" aria-label="Scroll to How It Works section">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </button>
   </section>
 
-  <!-- ═══════════ ABOUT (how the program works) ═══════════ -->
-  <section class="panel panel-light panel-dynamic" id="about">
-    <canvas class="about-bg" id="aboutGrid" aria-hidden="true"></canvas>
+  <!-- ═══════════ CURRICULUM ═══════════ -->
+  <section class="panel panel-tint panel-tall" id="curriculum">
     <div class="wrap">
-      <div class="split">
-        <div class="split-text">
+      <div class="curr-layout">
+        <div class="curr-copy">
           <p class="kicker reveal">How It Works</p>
-          <h2 class="h2 reveal">Two semesters. One path.</h2>
+          <h2 class="h2 reveal">Eight weeks, zero to capable.</h2>
           <p class="lede reveal">
-            Your first semester is an eight-week curriculum that takes you from your
-            first prompt to building with AI agents. Your second is spent on a research
-            team: going deep on the tools, teaching the chapter what you found, and
-            consulting for a real company. No technical background required.
+            Every new member works through the same path. It starts from nothing,
+            and each week builds on the one before it. Open any week to see
+            what's covered.
+          </p>
+          <div class="curr-progress reveal" aria-hidden="true">
+            <span class="curr-progress-num" id="currWeek">1</span>
+            <span class="curr-progress-of">/ 8 weeks</span>
+          </div>
+          <button type="button" class="btn btn-outline-dark btn-sm reveal" id="timelineToggle" aria-pressed="false">Expand all</button>
+        </div>
+
+        <!-- Filled in by members.js from the CURRICULUM list in members-data.js -->
+        <div class="tl-wrap">
+          <div class="tl-spine" aria-hidden="true"><span id="tlFill"></span></div>
+          <ol class="timeline" id="timeline"></ol>
+          <noscript><p class="lede">The curriculum needs JavaScript turned on to display.</p></noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECOND SEMESTER ═══════════ -->
+  <section class="panel panel-dark panel-tall" id="spring">
+    <div class="wrap">
+      <header class="sec-head sec-head-row">
+        <div>
+          <p class="kicker kicker-light reveal">Second Semester</p>
+          <h2 class="h2 h2-light reveal">After the curriculum, the real work starts.</h2>
+          <p class="lede lede-light reveal">
+            Members who finish the eight weeks move into research teams. You go
+            deep on the tools, teach the chapter what you found, and then put it
+            to work for a real company.
           </p>
         </div>
-        <div class="split-media reveal">
-          <div class="tool-card">
-            <p class="tool-card-label">Tools You'll Work With</p>
-            <div class="tool-grid">
-              <!-- Brand marks live in assets/tool-logos/ and are drawn white on each
-                   brand's color via the .logo CSS mask. -->
-              <div class="tool-badge" style="--tb: #D97757;">
-                <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/claude.svg')"></span></span>
-                <span class="tool-name">Claude</span>
-              </div>
-              <div class="tool-badge" style="--tb: #10A37F;">
-                <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/openai.svg')"></span></span>
-                <span class="tool-name">ChatGPT</span>
-              </div>
-              <div class="tool-badge" style="--tb: #20808D;">
-                <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/perplexity.svg')"></span></span>
-                <span class="tool-name">Perplexity</span>
-              </div>
-              <div class="tool-badge" style="--tb: #000000;">
-                <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/grok.svg')"></span></span>
-                <span class="tool-name">Grok</span>
-              </div>
-              <div class="tool-badge" style="--tb: #0668E1;">
-                <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/meta.svg')"></span></span>
-                <span class="tool-name">Meta AI</span>
-              </div>
-              <div class="tool-badge" style="--tb: #181717;">
-                <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/github.svg')"></span></span>
-                <span class="tool-name">GitHub</span>
-              </div>
-            </div>
-          </div>
+        <div class="meet-card reveal">
+          <p class="meet-label">Meets</p>
+          <p class="meet-time">Mondays</p>
+          <p class="meet-hours">7:00 &ndash; 8:00 PM</p>
         </div>
-      </div>
+      </header>
 
-      <div class="phase-row phase-row-tight">
-        <article class="phase reveal">
-          <p class="phase-when">First semester</p>
-          <h3>Learn the tools</h3>
-          <p>Eight weeks of hands-on instruction, from prompting to skills, agents, and Claude Code. You start from zero.</p>
-        </article>
-
-        <div class="phase-link" aria-hidden="true"></div>
-
-        <article class="phase reveal">
-          <p class="phase-when">Second semester</p>
-          <h3>Research and teach</h3>
-          <p>Join a research team, go deep on an AI model, and present what you found back to the chapter.</p>
-        </article>
-
-        <div class="phase-link" aria-hidden="true"></div>
-
-        <article class="phase reveal">
-          <p class="phase-when">Second semester</p>
+      <ol class="track">
+        <li class="track-step track-wide reveal">
+          <div class="track-wide-copy">
+            <h3>Research the models</h3>
+            <p>Members go deep on the AI models people use at work, one model per group, and keep building with Claude throughout.</p>
+          </div>
+          <ul class="model-teams">
+            <li class="model-team" style="--tb: #20808D;">
+              <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/perplexity.svg')"></span></span>
+              <span class="model-text"><strong>Perplexity</strong><span>by Perplexity AI</span></span>
+            </li>
+            <li class="model-team" style="--tb: #10A37F;">
+              <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/openai.svg')"></span></span>
+              <span class="model-text"><strong>ChatGPT</strong><span>by OpenAI</span></span>
+            </li>
+            <li class="model-team" style="--tb: #000000;">
+              <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/grok.svg')"></span></span>
+              <span class="model-text"><strong>Grok</strong><span>by xAI</span></span>
+            </li>
+            <li class="model-team" style="--tb: #D97757;">
+              <span class="tool-mark"><span class="logo" style="--logo: url('assets/tool-logos/claude.svg')"></span></span>
+              <span class="model-text"><strong>Claude</strong><span>by Anthropic</span></span>
+            </li>
+          </ul>
+        </li>
+        <li class="track-step reveal">
+          <h3>Present back to the chapter</h3>
+          <p>Each group brings its findings back and presents them, so the whole chapter learns what every model is good at.</p>
+        </li>
+        <li class="track-step reveal">
+          <h3>Four industry research teams</h3>
+          <p>Members work in four teams, each focused on an industry. Every team has a <strong>Research Lead</strong>, and any member can run for it.</p>
+        </li>
+        <li class="track-step reveal">
           <h3>Consult for a real company</h3>
-          <p>A company comes in with a real problem. Your team consults on it and delivers an AI-driven solution.</p>
-        </article>
-      </div>
+          <p>A company comes in with a real problem. The teams consult on it and deliver an AI-driven solution.</p>
+        </li>
+      </ol>
 
-      <p class="more-link reveal">
-        <a href="members.html#curriculum">See the full 8-week curriculum <span aria-hidden="true">&rarr;</span></a>
-      </p>
+      <div class="spring-cta reveal">
+        <p>Want in? Applications reopen in February.</p>
+        <a href="#apply" class="btn btn-primary">How to apply</a>
+      </div>
     </div>
   </section>
 
@@ -397,10 +414,23 @@
         </article>
 
       </div>
+    </div>
+  </section>
 
-      <p class="more-link more-link-light reveal">
-        <a href="members.html">Meet the current members <span aria-hidden="true">&rarr;</span></a>
-      </p>
+  <!-- ═══════════ ROSTER ═══════════ -->
+  <section class="panel panel-light panel-tall" id="roster">
+    <div class="wrap wrap-wide">
+      <header class="sec-head sec-head-row">
+        <div>
+          <h2 class="h2 reveal">Current members.</h2>
+        </div>
+        <p class="roster-count reveal" id="rosterCount"></p>
+      </header>
+
+      <!-- Filled in by members.js from the ROSTER list in members-data.js -->
+      <ul class="roster" id="rosterGrid"></ul>
+
+      <noscript><p class="lede">The member list needs JavaScript turned on to display.</p></noscript>
     </div>
   </section>
 
@@ -431,13 +461,13 @@
             <li><span>2</span> New members start the 8-week curriculum</li>
             <li><span>3</span> Finish it and join a research team</li>
           </ul>
-          <a href="members.html#curriculum" class="apply-card-link">See what new members learn <span aria-hidden="true">&rarr;</span></a>
+          <a href="#curriculum" class="apply-card-link">See what new members learn <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ WORK WITH US (companies — deliberately the last content section) ═══════════ -->
+  <!-- ═══════════ WORK WITH US ═══════════ -->
   <section class="panel panel-light panel-dynamic" id="partner">
     <div class="partner-bg" aria-hidden="true"></div>
     <div class="wrap">
@@ -482,10 +512,9 @@
           </div>
         </div>
         <nav class="foot-nav" aria-label="Footer">
-          <a href="#about">About</a>
+          <a href="#curriculum">How It Works</a>
           <a href="#team">Meet the Exec</a>
-          <a href="members.html">Current Members</a>
-          <a href="members.html#curriculum">Curriculum</a>
+          <a href="#roster">Current Members</a>
           <a href="#builds">RedHawk Builds</a>
           <a href="#partner">Work With Us</a>
         </nav>
@@ -510,6 +539,8 @@
 </div>
 </main>
 
+<script src="members-data.js"></script>
+<script src="members.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

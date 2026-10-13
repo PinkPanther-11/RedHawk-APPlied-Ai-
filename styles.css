@@ -285,7 +285,7 @@ body {
 /* rail inverts over dark panels */
 .scroll-rail.on-dark .rail-dot::after { background: rgba(255,255,255,0.26); }
 .scroll-rail.on-dark .rail-dot:hover::after { background: rgba(255,255,255,0.5); }
-.scroll-rail.on-dark .rail-dot.is-active::after { background: var(--red); }
+.scroll-rail.on-dark .rail-dot.is-active::after { background: #fff; }
 .scroll-rail.on-dark .rail-tip { background: var(--paper); color: var(--t1); }
 
 /* ── Buttons ───────────────────────────────────────────── */
@@ -475,47 +475,6 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* ── Phases (light — lives inside the combined About section) ────────── */
-.phase-row {
-  display: grid;
-  grid-template-columns: 1fr 56px 1fr 56px 1fr;
-  align-items: stretch;
-  gap: 0;
-}
-.phase-row-tight { margin-top: 48px; }
-.phase {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: 34px 30px 36px;
-  transition: transform var(--med) var(--ease), border-color var(--med) var(--ease), box-shadow var(--med) var(--ease);
-}
-.phase:hover { transform: translateY(-5px); border-color: var(--line-soft); box-shadow: var(--shadow-sm); }
-.phase h3 {
-  font-family: var(--display);
-  font-size: 18.5px; font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--t1);
-  margin-bottom: 10px;
-}
-.phase p { font-size: 14.5px; color: var(--t2); line-height: 1.58; }
-
-.phase-link { position: relative; }
-.phase-link::before {
-  content: '';
-  position: absolute; top: 50%; left: 12px; right: 12px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--line), transparent);
-}
-.phase-link::after {
-  content: '';
-  position: absolute; top: 50%; right: 12px;
-  width: 6px; height: 6px;
-  border-top: 1.5px solid var(--t3);
-  border-right: 1.5px solid var(--t3);
-  transform: translateY(-50%) rotate(45deg);
-}
-
 /* ── Check list ────────────────────────────────────────── */
 .check-list { margin-top: 28px; display: flex; flex-direction: column; gap: 13px; }
 .check-list li {
@@ -553,27 +512,7 @@ body {
 }
 .partner-cta strong { color: var(--t1); font-weight: 600; }
 
-/* ── About: red particle-network background ──────────────────────────────
-   A canvas of drifting red particles connected by lines, drawn by
-   initAboutParticles() in script.js — brightens near the pointer, bursts
-   on click. Sized to fill the section; the drawing itself (colors, motion,
-   reduced-motion handling) lives in JS since a <canvas> can't be animated
-   from CSS alone.
-   Masked so it stays visible in the open margins/gaps but fades directly
-   behind the left text column, which sits on transparent paper (no card)
-   and would otherwise fight the moving lines for legibility. ──────────── */
 .panel-dynamic { position: relative; overflow: hidden; }
-.about-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.16) 38%, black 68%);
-          mask-image: linear-gradient(90deg, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.16) 38%, black 68%);
-}
-#about .wrap { position: relative; z-index: 1; }
 
 /* ── Work With Us: dynamic background (closing section) ────────────────
    Same technique as About but red-forward and drifting the opposite
@@ -610,42 +549,7 @@ body {
   -webkit-mask: var(--logo) center / contain no-repeat;
           mask: var(--logo) center / contain no-repeat;
 }
-.phase-when {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 12px;
-}
-.phase .phase-when { font-size: 12px; color: var(--red); }
 
-.tool-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: 32px 28px;
-  box-shadow: var(--shadow-sm);
-}
-.tool-card-label {
-  font-family: var(--display);
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--t3);
-  margin-bottom: 20px;
-}
-.tool-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-.tool-badge {
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  padding: 18px 10px;
-  border-radius: var(--r-md);
-  background: var(--paper-tint);
-  border: 1px solid var(--line);
-  transition: transform var(--fast) var(--ease), border-color var(--fast) var(--ease);
-}
-.tool-badge:hover { transform: translateY(-3px); border-color: var(--tb, var(--red)); }
 .tool-mark {
   display: flex; align-items: center; justify-content: center;
   width: 40px; height: 40px;
@@ -656,12 +560,6 @@ body {
   font-weight: 700;
   font-size: 15px;
   letter-spacing: -0.02em;
-}
-
-.tool-name {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--t2);
 }
 
 /* ── Team: full-bleed background photo ─────────────────────────────────
@@ -806,7 +704,6 @@ body {
 }
 .more-link a span { transition: transform var(--fast) var(--ease); }
 .more-link a:hover span { transform: translateX(5px); }
-.more-link-light a { color: #fff; }
 
 /* Reading-progress bar pinned above the nav. Width is driven by script.js. */
 .progress {
@@ -836,22 +733,19 @@ body {
 
 .topnav-links a[aria-current="page"]::after { transform: scaleX(1); }
 
-/* ── RedHawk Builds (hackathon) ────────────────────────── */
-.builds {
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 84% 4%, rgba(200,16,46,0.26) 0%, transparent 46%),
-    linear-gradient(rgba(255,255,255,0.032) 1px, transparent 1px) 0 0 / 100% 56px,
-    linear-gradient(90deg, rgba(255,255,255,0.032) 1px, transparent 1px) 0 0 / 56px 100%,
-    var(--ink);
-}
-.builds .wrap { position: relative; }
-.builds .h2 { max-width: 15ch; }
-.builds .h2 em, .page-hero .h2 em {
+/* ── RedHawk Builds (hackathon) ──────────────────────────
+   A flat Miami-red band: solid color, plain type, hairline rules. No
+   gradients, glows, or glass, so it reads like a printed poster. */
+.builds { background: var(--red); }
+.builds .h2 { max-width: 15ch; color: #fff; }
+.builds .h2 em {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   letter-spacing: -0.01em;
-  color: #FF6B84;
 }
+.builds .lede { color: #fff; }
+.builds :focus-visible { outline-color: #fff; }
+.builds .btn-primary { background: var(--ink); box-shadow: none; }
+.builds .btn-primary:hover { background: #000; box-shadow: none; }
 
 .builds-top {
   display: grid;
@@ -859,24 +753,25 @@ body {
   gap: 64px;
   align-items: center;
 }
-.builds-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 30px; }
-.builds-meta span {
-  padding: 7px 14px;
-  border: 1px solid var(--line-dark);
-  border-radius: 999px;
-  font-size: 13.5px; font-weight: 500;
-  color: var(--d1);
+.builds-meta {
+  display: flex; flex-wrap: wrap; gap: 6px 26px;
+  margin: 26px 0 30px;
+  font-size: 15px; font-weight: 600;
+  color: #fff;
 }
 
 .prize-card {
   padding: 30px 30px 26px;
-  border: 1px solid var(--line-dark);
-  border-radius: var(--r-lg);
-  background: rgba(255,255,255,0.045);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--t1);
 }
-.prize-label, .apply-card-label, .meet-label {
+.prize-label {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--t3);
+}
+.apply-card-label, .meet-label {
   font-size: 12px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--d2);
@@ -884,17 +779,17 @@ body {
 .prizes li {
   display: flex; align-items: baseline; justify-content: space-between;
   padding: 14px 0;
-  border-bottom: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line);
 }
-.prizes li > span { font-size: 14.5px; color: var(--d2); }
+.prizes li > span { font-size: 14.5px; color: var(--t2); }
 .prizes strong {
   font-family: var(--display);
   font-weight: 800; font-size: 32px;
   letter-spacing: -0.03em; line-height: 1;
-  color: #fff;
+  color: var(--t1);
   font-variant-numeric: tabular-nums;
 }
-.prizes li:first-child strong { font-size: 50px; }
+.prizes li:first-child strong { font-size: 50px; color: var(--red); }
 .prize-stats {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 12px;
@@ -905,37 +800,30 @@ body {
   font-family: var(--display);
   font-weight: 700; font-size: 26px;
   letter-spacing: -0.025em; line-height: 1.1;
-  color: #fff;
+  color: var(--t1);
 }
-.prize-stats span { font-size: 12.5px; color: var(--d2); }
+.prize-stats span { font-size: 12.5px; color: var(--t3); }
 
+/* The three days: open columns under a rule, not boxed cards */
 .weekend {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 56px;
+  gap: 40px;
+  margin-top: 60px;
 }
-.day {
-  padding: 26px 26px 28px;
-  border: 1px solid var(--line-dark);
-  border-radius: var(--r-lg);
-  background: var(--ink-soft);
-  transition: transform var(--med) var(--ease), border-color var(--med) var(--ease);
-}
-.day:hover { transform: translateY(-4px); border-color: rgba(255,107,132,0.5); }
+.day { padding-top: 20px; border-top: 2px solid #fff; }
 .day-tag {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 12px; font-weight: 600;
+  font-size: 12.5px; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase;
-  color: #FF6B84;
+  color: #fff;
 }
 .day h3 {
   font-family: var(--display);
-  font-size: 23px; font-weight: 700;
-  letter-spacing: -0.022em;
+  font-size: 26px; font-weight: 700;
+  letter-spacing: -0.024em;
   color: #fff;
-  margin: 8px 0 10px;
+  margin: 6px 0 10px;
 }
-.day p:last-child { font-size: 14.5px; line-height: 1.58; color: var(--d2); }
+.day p:last-child { font-size: 15px; line-height: 1.58; color: #fff; }
 
 /* ── Apply (applications closed until February) ────────── */
 .apply-layout {
@@ -995,44 +883,6 @@ body {
 .apply-card-link span { transition: transform var(--fast) var(--ease); }
 .apply-card-link:hover span { transform: translateX(5px); }
 
-/* ══════════ Current Members page ══════════ */
-/* Long reading page: sections are taller than the viewport, so snapping
-   would fight the reader. */
-.snap-free { scroll-snap-type: none; }
-
-.page-hero {
-  min-height: 74vh; min-height: 74dvh;
-  overflow: hidden;
-  padding-bottom: 84px;
-  background:
-    linear-gradient(rgba(255,255,255,0.032) 1px, transparent 1px) 0 0 / 100% 56px,
-    linear-gradient(90deg, rgba(255,255,255,0.032) 1px, transparent 1px) 0 0 / 56px 100%,
-    var(--ink);
-}
-.page-hero-glow {
-  position: absolute; inset: -20%;
-  background:
-    radial-gradient(circle at 78% 30%, rgba(200,16,46,0.34) 0%, transparent 40%),
-    radial-gradient(circle at 12% 88%, rgba(200,16,46,0.16) 0%, transparent 36%);
-  animation: partnerDrift 24s ease-in-out infinite alternate;
-}
-@media (prefers-reduced-motion: reduce) {
-  .page-hero-glow { animation: none; }
-}
-.page-hero .wrap { position: relative; z-index: 1; }
-.page-title { font-size: clamp(36px, 5.3vw, 68px); }
-
-.jump { display: flex; flex-wrap: wrap; gap: 10px; }
-.jump a {
-  display: inline-flex; align-items: center;
-  min-height: 44px; padding: 0 20px;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  border-radius: 999px;
-  font-size: 14.5px; font-weight: 600;
-  color: #fff;
-  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
-}
-.jump a:hover { background: rgba(255,255,255,0.14); border-color: #fff; }
 
 .sec-head-row {
   display: flex; align-items: flex-end; justify-content: space-between;
@@ -1408,8 +1258,6 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
   .split { grid-template-columns: 1fr; gap: 44px; }
   .split-reverse .split-text  { order: 1; }
   .split-reverse .split-media { order: 2; }
-  .phase-row { grid-template-columns: 1fr; gap: 18px; }
-  .phase-link { display: none; }
 }
 
 @media (max-width: 860px) {
@@ -1428,7 +1276,6 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
 
 @media (max-width: 620px) {
   .team-grid { grid-template-columns: 1fr; }
-  .tool-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ── Phone shrink ──────────────────────────────────────────────────────
@@ -1459,17 +1306,7 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
 
   .split { gap: 32px; }
 
-  .phase-row-tight { margin-top: 28px; }
-  .phase { padding: 22px 20px 24px; }
-  .phase h3 { font-size: 16px; margin-bottom: 7px; }
-  .phase p { font-size: 13.5px; }
-
-  .tool-card { padding: 22px 18px; }
-  .tool-card-label { font-size: 12px; margin-bottom: 14px; }
-  .tool-grid { gap: 10px; }
-  .tool-badge { padding: 14px 8px; gap: 8px; }
   .tool-mark { width: 34px; height: 34px; }
-  .tool-name { font-size: 11.5px; }
 }
 
 @media (max-width: 480px) {
@@ -1501,9 +1338,8 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
 }
 
 @media (max-width: 760px) {
-  .weekend { grid-template-columns: 1fr; margin-top: 40px; }
+  .weekend { grid-template-columns: 1fr; gap: 28px; margin-top: 40px; }
   .roster { grid-template-columns: repeat(2, 1fr); }
-  .page-hero { min-height: auto; padding-bottom: 60px; }
   .track { grid-template-columns: 1fr; }
 }
 
@@ -1514,13 +1350,11 @@ button.tl-head:hover .tl-chev::before, button.tl-head:hover .tl-chev::after { ba
   .prizes strong { font-size: 26px; }
   .prizes li:first-child strong { font-size: 38px; }
   .prize-stats strong { font-size: 22px; }
-  .day { padding: 20px 20px 22px; }
-  .day h3 { font-size: 20px; }
+  .day h3 { font-size: 22px; }
 
   .apply-card { padding: 28px 22px 22px; }
   .apply-actions .btn { flex: 1 1 100%; }
 
-  .page-title { font-size: clamp(30px, 8.6vw, 40px); }
   .model-teams { grid-template-columns: 1fr; }
   .meet-card { width: 100%; }
   .spring-cta .btn { width: 100%; }

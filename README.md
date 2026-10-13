@@ -3,8 +3,8 @@
 Static site. No build step, no dependencies, no framework.
 
 ```
-index.html        home page: about, RedHawk Builds, exec, apply, work with us
-members.html      Current Members page: roster, 8-week curriculum, second semester
+index.html        the whole site: how it works, second semester, RedHawk Builds, exec, members, apply, work with us
+members.html      redirect to the members section (old link)
 members-data.js   the roster and weekly curriculum content (edit this one)
 members.js        draws the roster and curriculum from members-data.js
 styles.css        design system + layout
