@@ -174,6 +174,5 @@ var CURRICULUM = [
         "Speakers announced soon"
       ]}
     ]
-  },
-  { tba: true }
+  }
 ];
