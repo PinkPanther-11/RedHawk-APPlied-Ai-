@@ -134,17 +134,6 @@ var CURRICULUM = [
     ]
   },
   {
-    title: "Other AI Tools",
-    summary: "Beyond Claude: how other AI tools compare and where each one fits.",
-    sections: [
-      { label: "What we cover", items: [
-        "Meta Muse",
-        "Grok",
-        "How they compare with Claude, and when to reach for each"
-      ]}
-    ]
-  },
-  {
     event: true,
     date: "Nov 6–8",
     title: "RedHawk Builds 2026",
@@ -163,6 +152,17 @@ var CURRICULUM = [
       ]}
     ],
     link: { href: "https://redhawk-builds.vercel.app", text: "Register for RedHawk Builds" }
+  },
+  {
+    title: "Other AI Tools",
+    summary: "Beyond Claude: how other AI tools compare and where each one fits.",
+    sections: [
+      { label: "What we cover", items: [
+        "Meta Muse",
+        "Grok",
+        "How they compare with Claude, and when to reach for each"
+      ]}
+    ]
   },
   {
     title: "Guest Speaker Panel",
